@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת נתונים חכמה | ניתוח ותובנות</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>פורטל נתונים אסטרטגי | שקד דדון</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&family=Heebo:wght@900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #2A4365;
-            --secondary-color: #3182CE;
-            --bg-gradient: linear-gradient(135deg, #f6f8fd 0%, #f1f5f9 100%);
-            --card-bg: #ffffff;
-            --text-dark: #2D3748;
-            --text-light: #718096;
+            --primary: #1a365d;
+            --accent: #3182ce;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #4a5568;
         }
 
         * {
@@ -23,183 +23,193 @@
         }
 
         body {
-            font-family: 'Heebo', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* סגנון חלקה עליון - הדר */
-        header {
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            padding: 80px 20px;
             text-align: center;
-            padding: 40px 0;
-            animation: fadeInDown 1s ease-out;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
 
-        header h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .hero h1 {
+            font-family: 'Heebo', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             letter-spacing: -1px;
         }
 
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
             margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        /* כרטיסיות תועלות */
-        .benefits-grid {
+        /* Container */
+        .main-content {
+            max-width: 1200px;
+            margin: -50px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Benefits Grid */
+        .info-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-            animation: fadeIn 1.5s ease-out;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
-        .benefit-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            border-top: 4px solid var(--secondary-color);
+        .info-card {
+            background: var(--card);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-bottom: 4px solid var(--accent);
+            transition: transform 0.3s ease;
         }
 
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .info-card:hover {
+            transform: translateY(-8px);
         }
 
-        .benefit-icon {
-            font-size: 2.5rem;
+        .info-card h3 {
+            color: var(--primary);
             margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .benefit-card h3 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+        .info-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        .benefit-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        /* Tableau Container - השדרוג העיקרי */
+        .viz-container {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 50px;
+            min-height: 600px; /* מונע קפיצה של הדף בטעינה */
+            position: relative;
         }
 
-        /* מעטפת התרשים של Tableau */
-        .tableau-wrapper {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            margin-bottom: 40px;
-            animation: fadeInUp 1.5s ease-out;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 100%;
-            height: 80vh;
-            min-height: 600px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        /* פוטר וקרדיט */
+        /* Footer */
         footer {
+            background: #edf2f7;
+            padding: 60px 20px;
             text-align: center;
-            padding: 30px 0;
-            color: var(--text-light);
-            border-top: 2px solid rgba(0,0,0,0.05);
-            margin-top: 20px;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .credit {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            background: rgba(49, 130, 206, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
+        .creator-badge {
             display: inline-block;
-            margin-top: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
         }
 
-        /* אנימציות */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* התאמה למסכים קטנים */
+        /* Responsiveness */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.2rem; }
-            iframe { height: 60vh; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .main-content { margin-top: -30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <header>
-            <h1>ויזואליזציה של נתונים מרתקים</h1>
-            <p>ברוכים הבאים למערכת הדשבורדים החכמה שלנו. במקום לקרוא טבלאות אינסופיות, כאן הנתונים מתעוררים לחיים והופכים לסיפור ויזואלי ברור, חכם ואינטראקטיבי שמאפשר לקבל החלטות מדויקות ברגע.</p>
-        </header>
+    <section class="hero">
+        <div class="container">
+            <h1>מערכת ניתוח נתונים מתקדמת</h1>
+            <p>הופכים מידע גולמי לתובנות אסטרטגיות באמצעות טכנולוגיית הויזואליזציה המובילה בעולם.</p>
+        </div>
+    </section>
 
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🎯</div>
-                <h3>מיקוד מיידי</h3>
-                <p>התרשימים המוצגים מזקקים מידע מורכב לנקודות מפתח. זיהוי מגמות, הזדמנויות ואתגרים בתוך שניות בודדות.</p>
+    <div class="main-content">
+        <div class="info-section">
+            <div class="info-card">
+                <h3>מהות התרשימים</h3>
+                <p>הדאשבורד המוצג מנתח זרימת נתונים דינמית, המאפשרת לאתר חריגות ודפוסים שקופים. כל אלמנט נבנה כדי להעניק פרשנות מיידית למורכבות הנתונים.</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🖱️</div>
-                <h3>חוויה אינטראקטיבית</h3>
-                <p>אל תישארו צופים פסיביים. רחפו על הנתונים, סננו חיתוכים והעמיקו לתוך המספרים שמעניינים אתכם באמת.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📈</div>
-                <h3>החלטות מבוססות דאטה</h3>
-                <p>עזבו את תחושות הבטן. המערכת מנגישה עובדות בצורה בהירה, מה שמאפשר נקיטת פעולות עסקיות או מחקריות חכמות יותר.</p>
+            <div class="info-card">
+                <h3>תועלות המערכת</h3>
+                <p>קבלת החלטות מהירה מבוססת עובדות, צמצום רעשי רקע ויכולת לבצע "צלילה לעומק" (Drill-down) לכל פיסת מידע רלוונטית בזמן אמת.</p>
             </div>
         </div>
 
-        <div class="tableau-wrapper">
-            <iframe 
-                src="https://public.tableau.com/shared/XYXGRH7MC?:display_count=n&:origin=viz_share_link&:showVizHome=no&:embed=true" 
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <footer>
-            <p>פותח ועוצב בתשומת לב רבה, מתוך אהבה לנתונים ולעיצוב מנצח.</p>
-            <div class="credit">
-                נוצר על ידי מר שקד דדון ✨
+        <div class="viz-container" id="viz-wrapper">
+            <div class='tableauPlaceholder' id='viz1713352358872' style='position: relative; width: 100%; height: 100%;'>
+                <noscript>
+                    <a href='#'>
+                        <img alt='Dashboard 1' src='https://public.tableau.com/static/images/Bo/Book1_17739432098300/Dashboard1/1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='Book1_17739432098300&#47;Dashboard1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https://public.tableau.com/static/images/Bo/Book1_17739432098300/Dashboard1/1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
             </div>
-        </footer>
-
+        </div>
     </div>
+
+    <footer>
+        <p>כל הזכויות שמורות למערכת ניהול הידע</p>
+        <div class="creator-badge">
+            מפתח המערכת: מר שקד דדון
+        </div>
+    </footer>
+
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1713352358872');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        
+        // פונקציה להתאמת גודל התרשים בצורה מקצועית
+        function scaleViz() {
+            var width = divElement.offsetWidth;
+            vizElement.style.width = '100%';
+            if (width > 800) {
+                vizElement.style.height = '800px';
+            } else if (width > 500) {
+                vizElement.style.height = '600px';
+            } else {
+                vizElement.style.height = '1100px'; // מותאם לתצוגת מובייל (אורך)
+            }
+        }
+
+        scaleViz();
+        
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        
+        // עדכון גודל בשינוי גודל חלון
+        window.addEventListener('resize', scaleViz);
+    </script>
 
 </body>
 </html>
